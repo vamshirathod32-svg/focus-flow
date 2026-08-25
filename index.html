@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focus Flow</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Focus Flow</h1>
+      <p class="tagline">A Pomodoro timer that remembers your grind.</p>
+    </header>
+
+    <section class="timer-card">
+      <button id="settingsToggle" class="settings-toggle" title="Edit timer lengths">⚙</button>
+
+      <div class="mode-switch">
+        <button class="mode-btn active" data-mode="focus">Focus</button>
+        <button class="mode-btn" data-mode="short">Short Break</button>
+        <button class="mode-btn" data-mode="long">Long Break</button>
+      </div>
+
+      <form id="settingsPanel" class="settings-panel hidden">
+        <div class="settings-field">
+          <label for="focusInput">Focus (min)</label>
+          <input type="number" id="focusInput" min="1" max="180" required>
+        </div>
+        <div class="settings-field">
+          <label for="shortInput">Short break (min)</label>
+          <input type="number" id="shortInput" min="1" max="180" required>
+        </div>
+        <div class="settings-field">
+          <label for="longInput">Long break (min)</label>
+          <input type="number" id="longInput" min="1" max="180" required>
+        </div>
+        <div class="settings-actions">
+          <button type="submit" class="primary-btn small">Save</button>
+          <button type="button" id="settingsCancel" class="ghost-btn small">Cancel</button>
+        </div>
+      </form>
+
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 220 220">
+          <circle class="ring-bg" cx="110" cy="110" r="100"></circle>
+          <circle class="ring-progress" cx="110" cy="110" r="100"></circle>
+        </svg>
+        <div class="time-display" id="timeDisplay">25:00</div>
+      </div>
+
+      <div class="active-task" id="activeTaskLabel">No task selected</div>
+
+      <div class="controls">
+        <button id="startPauseBtn" class="primary-btn">Start</button>
+        <button id="resetBtn" class="ghost-btn">Reset</button>
+      </div>
+
+      <div class="session-count">Sessions completed today: <span id="sessionCount">0</span></div>
+    </section>
+
+    <section class="tasks-card">
+      <h2>Tasks</h2>
+      <form id="taskForm" class="task-form">
+        <input type="text" id="taskInput" placeholder="What are you working on?" autocomplete="off">
+        <button type="submit">Add</button>
+      </form>
+      <ul id="taskList" class="task-list"></ul>
+    </section>
+
+    <section class="stats-card">
+      <h2>This Week</h2>
+      <p class="stats-subtitle">Focus sessions completed, last 7 days</p>
+      <div class="stats-chart" id="statsChart"></div>
+      <div class="stats-total">Total this week: <strong id="weekTotal">0</strong> sessions</div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
